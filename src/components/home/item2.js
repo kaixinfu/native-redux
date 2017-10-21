@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Container, Content, Button, Icon} from 'native-base';
 
-export default class Item extends Component {
+export default class Item2 extends Component {
 	
 	static navigationOptions = ({navigation}) => {
 		let {state,goBack} = navigation;
@@ -14,7 +14,7 @@ export default class Item extends Component {
 			header = null;
 		}
 		const headerStyle = {backgroundColor:'#4ECBFC'};
-		const headerTitle = 'Scence1';
+		const headerTitle = 'Scence2';
 		const headerTitleStyle = {fontSize: 20,color:'white',fontWeight:'500'}
 		const headerBackTitle = false;
 		const headerLeft = (
@@ -23,7 +23,7 @@ export default class Item extends Component {
 					<Icon name="ios-arrow-back" />
 				</View>
 				<View styale={{paddingLeft: 10}}>
-					<Text>go Home!</Text>
+					<Text>go Scence1!</Text>
 				</View>
 			</TouchableOpacity>
 		);
@@ -42,10 +42,10 @@ render() {
 	return (
 		<Container style={styles.container}>
 			<View>
-				<Button small success onPress={() => navigate('Item2', {callback: (data)=>{
+				<Button small success onPress={() => navigate('Item', {callback: (data)=>{
 					console.log('..........go'); // 打印值为：'回调参数'
 				} ,user: 'Lucy' })}>
-					<Text> Click Me to scence2! </Text>
+					<Text> Click Me to Home! </Text>
 				</Button>
 			</View>
 		</Container>

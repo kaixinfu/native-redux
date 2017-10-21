@@ -18,11 +18,15 @@ export default class HomeScreen extends Component {
 render() {
 	const { navigate } = this.props.navigation;
 	return (
-			<View style={styles.container}>
-				<Button small success onPress={() => navigate('Item', { user: 'Lucy' })}>
-					<Text> Click Me! </Text>
-				</Button>
-			</View>
+			<Container style={styles.container}>
+				<View>
+					<Button small success onPress={() => navigate('Item', {callback: (data)=>{
+						console.log('..........go'); // 打印值为：'回调参数'
+					} ,user: 'Lucy' })}>
+						<Text> Click Me to scence1! </Text>
+					</Button>
+				</View>
+			</Container>
 		)
 	}
 }
