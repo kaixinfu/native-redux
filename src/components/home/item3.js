@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Container, Content, Button, Icon} from 'native-base';
+import { NavigationActions } from 'react-navigation'
 
-export default class Item2 extends Component {
+const goToHomeAction = NavigationActions.reset({
+		index: 0,
+		actions: [
+			NavigationActions.navigate({ routeName: 'MainScreen' })
+		]
+	})
+
+export default class Item3 extends Component {
 	
 	static navigationOptions = ({navigation}) => {
 		let {state,goBack} = navigation;
@@ -14,7 +22,7 @@ export default class Item2 extends Component {
 			header = null;
 		}
 		const headerStyle = {backgroundColor:'#4ECBFC'};
-		const headerTitle = 'Scence2';
+		const headerTitle = 'Scence3';
 		const headerTitleStyle = {fontSize: 20,color:'white',fontWeight:'500'}
 		const headerBackTitle = false;
 		const headerLeft = (
@@ -23,7 +31,7 @@ export default class Item2 extends Component {
 					<Icon name="ios-arrow-back" />
 				</View>
 				<View styale={{paddingLeft: 10}}>
-					<Text>go Scence1!</Text>
+					<Text>go Scence2!</Text>
 				</View>
 			</TouchableOpacity>
 		);
@@ -37,14 +45,33 @@ export default class Item2 extends Component {
 		return {headerStyle,headerTitle,headerTitleStyle,headerBackTitle,headerLeft,headerRight,header}
 	};
 	
+	handleReset = _ => {
+		const { navigate , goBack, dispatch} = this.props.navigation;
+		return dispatch(goToHomeAction)
+	}
+	handleGoBack = _ => {
+		const { navigate , goBack, dispatch} = this.props.navigation;
+		function goback () {
+			goBack()
+			goBack()
+		}
+		return goback()
+	}
+	
 render() {
-	console.log('...........scence2')
-	const { navigate , goBack} = this.props.navigation;
+	console.log('...........scence3')
+	const { navigate , goBack, dispatch} = this.props.navigation;
+	// dispatch(NavigationActions.navigate({ routeName: 'Item'})) 可以跳转到scence1，但还是会压栈
+	// dispatch(NavigationActions.reset({
+	// 	index: 0,
+	// 	actions: [
+	// 		NavigationActions.navigate({ routeName: 'Item' })
+	// 	]}) 可以跳转到scence1，清空堆栈
 	return (
 		<Container style={styles.container}>
 			<View>
-				<Button small success onPress={() => navigate('Item3', {user: 'Lucy' })}>
-					<Text> Click Me to Scence3! </Text>
+				<Button small success onPress={() => this.handleReset() }>
+					<Text> Click Me to Home! </Text>
 				</Button>
 			</View>
 		</Container>
